@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "Peliculas")
+@Table(name = "pelicula")
 @Getter
 @Setter
 public class MovieEntity {
@@ -19,15 +19,18 @@ public class MovieEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    @Column(name = "imagen")
     private String image;
 
+    @Column(name = "titulo")
     private String title;
-
-    private String rating;
 
     @Column(name = "fecha_creacion")
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate creationDate;
+
+    @Column(name = "calificacion")
+    private String rating;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn
@@ -35,10 +38,11 @@ public class MovieEntity {
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
-            name = "movie_character",
+            name = "pelicula_personaje",
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "character_id"))
     private Set<CharacterEntity> characters = new HashSet<>();
+
 
 
 }
