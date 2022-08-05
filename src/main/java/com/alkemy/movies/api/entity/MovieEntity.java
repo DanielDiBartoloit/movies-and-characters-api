@@ -27,7 +27,7 @@ public class MovieEntity {
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate creationDate;
 
-    private String rating;
+    private Byte rating;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn
