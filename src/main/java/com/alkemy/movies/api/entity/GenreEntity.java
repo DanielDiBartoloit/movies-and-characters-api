@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "genero")
+@Table(name = "genders")
 @Getter
 @Setter
 public class GenreEntity {
@@ -17,13 +17,12 @@ public class GenreEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "nombre")
     private String name;
 
-    @Column(name = "imagen")
     private String image;
 
     @OneToMany(mappedBy = "genre", cascade = CascadeType.ALL)
     private List<MovieEntity> movies = new ArrayList<>();
 
 }
+
