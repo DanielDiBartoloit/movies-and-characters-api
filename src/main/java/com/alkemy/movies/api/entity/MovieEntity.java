@@ -29,11 +29,15 @@ public class MovieEntity {
 
     private Byte rating;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn
     private GenreEntity genre;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
     @JoinTable(
             name = "movie_character",
             joinColumns = @JoinColumn(name = "movie_id"),

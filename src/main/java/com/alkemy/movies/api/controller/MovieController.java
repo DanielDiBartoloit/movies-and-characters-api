@@ -2,7 +2,7 @@ package com.alkemy.movies.api.controller;
 
 import com.alkemy.movies.api.dto.MovieDTO;
 import com.alkemy.movies.api.service.MovieService;
-import com.alkemy.movies.api.service.impl.MovieServiceImpl;
+
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;

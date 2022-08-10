@@ -25,9 +25,9 @@ public class CharacterEntity {
 
     private Float weight;
 
-    private String history;
+    private String story;
 
-    @ManyToMany(mappedBy = "characters", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "characters")
     private Set<MovieEntity> movies = new HashSet<>();
 
 }
