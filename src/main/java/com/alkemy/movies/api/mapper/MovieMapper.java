@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Component
 public class MovieMapper {
 
@@ -15,6 +16,9 @@ public class MovieMapper {
         MovieEntity movieEntity = new MovieEntity();
         movieEntity.setImage(dto.getImage());
         movieEntity.setTitle(dto.getTitle());
+        movieEntity.setCreationDate(dto.getCreationDate());
+        movieEntity.setRating(dto.getRating());
+        movieEntity.setCharacters(dto.getCharacters());
         return movieEntity;
     }
 
@@ -23,8 +27,12 @@ public class MovieMapper {
         movieDTO.setId(entity.getId());
         movieDTO.setImage(entity.getImage());
         movieDTO.setTitle(entity.getTitle());
+        movieDTO.setCreationDate(entity.getCreationDate());
+        movieDTO.setRating(entity.getRating());
+        movieDTO.setCharacters(entity.getCharacters());
         return movieDTO;
     }
+
 
     public List<MovieDTO> moviesEntityList2DTOList(List<MovieEntity> entities) {
         List<MovieDTO> dtos = new ArrayList<>();
@@ -36,4 +44,6 @@ public class MovieMapper {
 
         return dtos;
     }
+
+
 }
