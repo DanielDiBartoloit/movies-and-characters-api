@@ -19,7 +19,7 @@ import java.util.List;
 public class MovieMapper {
 
     @Autowired
-    CharacterMapper characterMapper;
+    private CharacterMapper characterMapper;
 
     public MovieEntity movieDTO2Entity(MovieDTO dto) {
         MovieEntity movieEntity = new MovieEntity();
@@ -42,24 +42,24 @@ public class MovieMapper {
         movieDTO.setCreationDate(entity.getCreationDate().toString());
         movieDTO.setRating(entity.getRating());
 
-        if(loadCharacters){
-        List<CharacterDTO> DTOCharacters = characterMapper.characterEntityList2DTOList(entity.getCharacters(), false);
-        movieDTO.setCharacters(DTOCharacters);
+        if (loadCharacters) {
+            List<CharacterDTO> DTOCharacters = characterMapper.characterEntityList2DTOList(entity.getCharacters(), false);
+            movieDTO.setCharacters(DTOCharacters);
         }
 
         return movieDTO;
     }
 
-    public List<MovieDTO> moviesEntityList2DTOList(List<MovieEntity> entities) {
+    public List<MovieDTO> moviesEntityList2DTOList(List<MovieEntity> entities, boolean loadCharacters) {
         List<MovieDTO> dtos = new ArrayList<>();
 
-        for (MovieEntity entity : entities
-        ) {
-            dtos.add(this.movieEntity2DTO(entity, Boolean.TRUE));
+        for (MovieEntity entity : entities) {
+            dtos.add(this.movieEntity2DTO(entity, loadCharacters));
         }
 
         return dtos;
     }
+
     private LocalDate string2LocalDate(String stringDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse(stringDate, formatter);

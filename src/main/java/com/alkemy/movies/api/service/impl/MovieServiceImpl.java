@@ -27,7 +27,7 @@ public class MovieServiceImpl implements MovieService {
 
     public List<MovieDTO> getAllMovies() {
         List<MovieEntity> entities = movieRepository.findAll();
-        List<MovieDTO> result = movieMapper.moviesEntityList2DTOList(entities);
+        List<MovieDTO> result = movieMapper.moviesEntityList2DTOList(entities, Boolean.TRUE);
         return result;
     }
 

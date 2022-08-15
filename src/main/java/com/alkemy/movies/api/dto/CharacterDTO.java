@@ -1,10 +1,11 @@
 package com.alkemy.movies.api.dto;
 
-import com.alkemy.movies.api.entity.MovieEntity;
+
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Set;
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -15,5 +16,5 @@ public class CharacterDTO {
     private Byte age;
     private Float weight;
     private String story;
-    private Set<MovieEntity> movies;
+    private List<MovieDTO> movies;
 }
