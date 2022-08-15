@@ -19,13 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 @Setter
 public class CharacterController {
 
-    //@Autowired
-    //private CharacterService characterService;
+    @Autowired
+    private CharacterService characterService;
 
-    //@PostMapping
-    //public ResponseEntity<CharacterDTO> saveCharacter(@RequestBody CharacterDTO character){
-        //CharacterDTO savedCharacter = characterService.saveCharacter(character);
-   //}
+    @PostMapping
+    public ResponseEntity<CharacterDTO> saveCharacter(@RequestBody CharacterDTO character) {
+        CharacterDTO savedCharacter = characterService.saveCharacter(character);
+        return ResponseEntity.status(HttpStatus.CREATED).body(character);
+    }
 
 
 }
