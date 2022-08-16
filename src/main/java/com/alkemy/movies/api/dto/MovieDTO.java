@@ -1,20 +1,19 @@
 package com.alkemy.movies.api.dto;
 
-
 import lombok.Getter;
 import lombok.Setter;
 
-
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.List;
-
 
 @Getter
 @Setter
 public class MovieDTO {
     private Long id;
     private String image;
+    @NotNull
     private String title;
     @Min(value = 1, message = "rating should not be less than 1")
     @Max(value = 5, message = "rating should not be higher than 5")
@@ -22,6 +21,7 @@ public class MovieDTO {
     private String creationDate;
     private List<CharacterDTO> characters;
 }
+
 
 
 

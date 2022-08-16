@@ -67,8 +67,8 @@ public class CharacterMapper {
     }
     public void characterEntityRefreshValues(CharacterEntity characterEntity, CharacterDTO characterDTO){
         characterEntity.setAge(characterDTO.getAge());
-        characterEntity.setWeight(characterEntity.getWeight());
-        characterEntity.setStory(characterEntity.getStory());
+        characterEntity.setWeight(characterDTO.getWeight());
+        characterEntity.setStory(characterDTO.getStory());
     }
 
 }

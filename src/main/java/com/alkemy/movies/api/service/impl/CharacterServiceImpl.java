@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CharacterServiceImpl implements CharacterService {
@@ -23,8 +24,8 @@ public class CharacterServiceImpl implements CharacterService {
     public CharacterDTO saveCharacter(CharacterDTO dto) {
         CharacterEntity entity = characterMapper.characterDTO2Entity(dto);
         CharacterEntity savedEntity = characterRepository.save(entity);
-        //CharacterDTO result = characterMapper.characterEntity2DTO(savedEntity);
-        return null;
+        CharacterDTO result = characterMapper.characterEntity2DTO(savedEntity, Boolean.TRUE);
+        return result;
     }
 
     @Override
@@ -41,9 +42,23 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     public CharacterDTO updateCharacter(Long id, CharacterDTO characterDTO) {
-        CharacterEntity characterEntity = characterRepository.findById(id).get();
+
+        Optional<CharacterEntity> characterOptional = characterRepository.findById(id);
+
+        if (!characterOptional.isPresent()){
+            throw new RuntimeException("The character with that id does not exist");
+        }
+
+        CharacterEntity characterEntity = characterOptional.get();
+
         characterMapper.characterEntityRefreshValues(characterEntity, characterDTO);
-        return new CharacterDTO();
+
+        CharacterEntity savedEntity = characterRepository.save(characterEntity);
+
+        CharacterDTO result = characterMapper.characterEntity2DTO(savedEntity, Boolean.TRUE);
+
+        return result;
+
     }
 
 

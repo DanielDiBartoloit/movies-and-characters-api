@@ -11,9 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
-
 
 @RestController
 @RequestMapping("movies")
@@ -37,11 +35,13 @@ public class MovieController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<MovieDTO> deleteMovie(@PathVariable Long id){
+    public ResponseEntity<MovieDTO> deleteMovie(@PathVariable Long id) {
         movieService.deleteMovie(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-
-
 }
+
+
+
+

@@ -8,6 +8,6 @@ public interface MovieService {
     MovieDTO saveMovie(MovieDTO dto);
     List<MovieDTO> getAllMovies();
 
-
     void deleteMovie(Long id);
+
 }
