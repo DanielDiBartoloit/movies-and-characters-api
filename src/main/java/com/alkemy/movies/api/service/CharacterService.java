@@ -11,5 +11,7 @@ public interface CharacterService {
 
     List<CharacterDTO> getAllCharacters();
 
-    void deleteMovie(Long id);
+    void deleteCharacter(Long id);
+
+    CharacterDTO updateCharacter(Long id, CharacterDTO character);
 }

@@ -8,8 +8,10 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -23,7 +25,7 @@ public class MovieController {
     private MovieService movieService;
 
     @PostMapping
-    public ResponseEntity<MovieDTO> saveMovie(@RequestBody MovieDTO movie) {
+    public ResponseEntity<MovieDTO> saveMovie(@RequestBody @Validated MovieDTO movie) {
         MovieDTO savedMovie = movieService.saveMovie(movie);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedMovie);
     }

@@ -35,8 +35,15 @@ public class CharacterServiceImpl implements CharacterService {
     }
 
     @Override
-    public void deleteMovie(Long id) {
+    public void deleteCharacter(Long id) {
         characterRepository.deleteById(id);
+    }
+
+    @Override
+    public CharacterDTO updateCharacter(Long id, CharacterDTO characterDTO) {
+        CharacterEntity characterEntity = characterRepository.findById(id).get();
+        characterMapper.characterEntityRefreshValues(characterEntity, characterDTO);
+        return new CharacterDTO();
     }
 
 

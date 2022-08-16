@@ -2,7 +2,6 @@ package com.alkemy.movies.api.controller;
 
 
 import com.alkemy.movies.api.dto.CharacterDTO;
-import com.alkemy.movies.api.dto.MovieDTO;
 import com.alkemy.movies.api.service.CharacterService;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,9 +33,16 @@ public class CharacterController {
         return ResponseEntity.ok().body(characters);
     }
 
+    @PutMapping
+    public ResponseEntity<CharacterDTO> updateCharacter(@PathVariable Long id, @RequestBody CharacterDTO character){
+        CharacterDTO updatedCharacter = characterService.updateCharacter(id, character);
+        return ResponseEntity.ok().body(updatedCharacter);
+    }
+
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<CharacterDTO> deleteCharacter(@PathVariable Long id){
-        characterService.deleteMovie(id);
+    public ResponseEntity<Void> deleteCharacter(@PathVariable Long id){
+        characterService.deleteCharacter(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 

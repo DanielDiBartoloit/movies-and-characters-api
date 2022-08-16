@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 
@@ -14,10 +16,14 @@ public class MovieDTO {
     private Long id;
     private String image;
     private String title;
-    private Byte rating;
+    @Min(value = 1, message = "rating should not be less than 1")
+    @Max(value = 5, message = "rating should not be higher than 5")
+    private int rating;
     private String creationDate;
     private List<CharacterDTO> characters;
 }
+
+
 
 
 

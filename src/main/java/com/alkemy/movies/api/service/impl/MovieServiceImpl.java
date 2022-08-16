@@ -8,10 +8,14 @@ import com.alkemy.movies.api.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.xml.validation.Validator;
 import java.util.List;
 
 @Service
 public class MovieServiceImpl implements MovieService {
+
+    //@Autowired
+    //private Validator validator;
 
     @Autowired
     private MovieMapper movieMapper;
