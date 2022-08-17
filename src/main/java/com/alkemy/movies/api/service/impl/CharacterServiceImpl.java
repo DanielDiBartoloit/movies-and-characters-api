@@ -2,6 +2,7 @@ package com.alkemy.movies.api.service.impl;
 
 import com.alkemy.movies.api.dto.CharacterDTO;
 import com.alkemy.movies.api.entity.CharacterEntity;
+import com.alkemy.movies.api.exception.ParamNotFoundException;
 import com.alkemy.movies.api.mapper.CharacterMapper;
 import com.alkemy.movies.api.repository.CharacterRepository;
 import com.alkemy.movies.api.service.CharacterService;
@@ -37,16 +38,28 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     public void deleteCharacter(Long id) {
+
+        Optional<CharacterEntity> characterOptional = characterRepository.findById(id);
+
+        if (!characterOptional.isPresent()) {
+            throw new ParamNotFoundException("The character with that id does not exist");
+        }
+
+        //TODO: Consultar esta forma si es valida
+        //CharacterEntity characterEntity = characterRepository.findById(id)
+                //.orElseThrow(() -> new ParamNotFoundException("The character with that id does not exist"));
+
         characterRepository.deleteById(id);
     }
+
 
     @Override
     public CharacterDTO updateCharacter(Long id, CharacterDTO characterDTO) {
 
         Optional<CharacterEntity> characterOptional = characterRepository.findById(id);
 
-        if (!characterOptional.isPresent()){
-            throw new RuntimeException("The character with that id does not exist");
+        if (!characterOptional.isPresent()) {
+            throw new ParamNotFoundException("The character with that id does not exist");
         }
 
         CharacterEntity characterEntity = characterOptional.get();

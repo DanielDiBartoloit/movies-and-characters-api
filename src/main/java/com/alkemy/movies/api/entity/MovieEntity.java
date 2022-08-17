@@ -5,18 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import java.util.List;
-
 
 @Entity
 @Table(name = "movies")
@@ -38,9 +33,7 @@ public class MovieEntity {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate creationDate;
 
-    //@Min(value = 1, message = "Rating should not be less than 1")
-    //@Max(value = 5, message = "Rating should not be higher than 5")
-    private int rating;
+    private Byte rating;
 
     private Boolean deleted = Boolean.FALSE;
 
@@ -60,7 +53,6 @@ public class MovieEntity {
     private List<CharacterEntity> characters = new ArrayList<>();
 
 }
-
 
 
 

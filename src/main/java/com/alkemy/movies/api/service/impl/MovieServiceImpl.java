@@ -36,6 +36,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     public void deleteMovie(Long id) {
+
         movieRepository.deleteById(id);
     }
 
